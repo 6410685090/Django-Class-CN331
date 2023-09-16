@@ -9,8 +9,9 @@ tasks = ['task 1', 'task 2', 'task 3']
 def index(request):
     if 'tasks' not in request.session:
         request.session['tasks'] = []
-
-    return render(request, 'index.html', {'tasks': request.session['tasks']})
+    return render(request, 'tasks/index.html', {
+        'tasks': request.session['tasks']
+    })
 
 
 class NewTaskForm(forms.Form):
@@ -25,6 +26,9 @@ def add(request):
             request.session['tasks'] += [task]
             return HttpResponseRedirect(reverse('tasks:index'))
         else:
-            return render(request, 'add.html', {'form': form})
-
-    return render(request, 'add.html', {'form': NewTaskForm})
+            return render(request, 'tasks/add.html', {
+                'form': form
+            })
+    return render(request, 'tasks/add.html', {
+        'form': NewTaskForm
+    })

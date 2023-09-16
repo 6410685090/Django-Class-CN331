@@ -4,12 +4,12 @@ from django.utils import timezone
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'hello/index.html')
 
 
 def greet(request, name):
     hour = timezone.localtime().hour
-    return render(request, 'greet.html', {
+    return render(request, 'hello/greet.html', {
         'name': name.title(), 
         'hour': hour
         })
